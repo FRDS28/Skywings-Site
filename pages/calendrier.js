@@ -1,98 +1,135 @@
-
-import { useState } from "react";
-
-const avions = ["DR400-120", "DR400-140B", "PA28 Arrow II"];
-const heures = Array.from({ length: 15 }, (_, i) => `${7 + i}:00`);
+import { useState } from 'react';
 
 export default function Calendrier() {
-  const [date, setDate] = useState(new Date());
   const [admin, setAdmin] = useState(false);
-  const [password, setPassword] = useState("");
-  const [reservations, setReservations] = useState([]);
+  const [mdp, setMdp] = useState('');
+  const [data, setData] = useState({
+    '2025-04-15': {
+      DR400: { nom: 'Jean Dupont' },
+      PA28: null,
+      ULM: null,
+    },
+    '2025-04-17': {
+      DR400: { nom: 'Alice Martin' },
+      PA28: { nom: 'Marc Durand' },
+      ULM: null,
+    },
+    '2025-04-21': {
+      DR400: null,
+      PA28: null,
+      ULM: null,
+    }
+  });
 
-  const formatDate = (d) => d.toISOString().split("T")[0];
-  const jour = formatDate(date);
+  const jours = [
+    '2025-04-15',
+    '2025-04-16',
+    '2025-04-17',
+    '2025-04-18',
+    '2025-04-19',
+    '2025-04-20',
+    '2025-04-21'
+  ];
 
-  const toggleAdmin = () => {
-    if (password === "admin123") setAdmin(true);
-    else alert("Mot de passe incorrect");
+  const avions = ['DR400', 'PA28', 'ULM'];
+  const joursFermes = ['2025-04-21'];
+
+  const verifierMdp = () => {
+    if (mdp === 'SkyWings2023') {
+      setAdmin(true);
+    } else {
+      alert('Mot de passe incorrect');
+    }
   };
 
-  const ajouterReservation = (avion, heure) => {
-    const nom = prompt("Nom du client ?");
-    if (!nom) return;
-    setReservations([...reservations, { jour, avion, heure, nom }]);
-  };
-
-  const supprimerReservation = (r) => {
-    setReservations(reservations.filter(
-      (res) => !(res.jour === r.jour && res.avion === r.avion && res.heure === r.heure)
-    ));
-  };
-
-  const changerJour = (delta) => {
-    const d = new Date(date);
-    d.setDate(d.getDate() + delta);
-    setDate(d);
+  const supprimerReservation = (jour, avion) => {
+    const nouvelleData = { ...data };
+    if (nouvelleData[jour]) {
+      nouvelleData[jour][avion] = null;
+      setData(nouvelleData);
+    }
   };
 
   return (
-    <main style={{ padding: '2rem' }}>
-      <h1 style={{ fontSize: '2rem', color: '#B026FF' }}>Calendrier de réservation – {jour}</h1>
-
-      <div style={{ marginBottom: '1rem' }}>
-        <button onClick={() => changerJour(-1)}>⬅️ Jour précédent</button>
-        <button onClick={() => changerJour(1)} style={{ marginLeft: '1rem' }}>Jour suivant ➡️</button>
-      </div>
+    <div style={{ padding: '2rem' }}>
+      <h1>Calendrier des vols</h1>
 
       {!admin && (
-        <div style={{ marginBottom: '1rem' }}>
+        <div style={{ marginBottom: '2rem' }}>
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             placeholder="Mot de passe admin"
+            value={mdp}
+            onChange={(e) => setMdp(e.target.value)}
           />
-          <button onClick={toggleAdmin}>Connexion admin</button>
+          <button onClick={verifierMdp}>Connexion</button>
         </div>
       )}
 
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+      {/* ✅ Légende */}
+      <div style={{ display: 'flex', gap: '2rem', marginBottom: '2rem' }}>
+        <div><span style={{ backgroundColor: '#d1fae5', padding: '0.3rem 1rem', borderRadius: '4px' }}>Libre</span></div>
+        <div><span style={{ backgroundColor: '#e5e7eb', padding: '0.3rem 1rem', borderRadius: '4px' }}>Occupé</span></div>
+        <div><span style={{ backgroundColor: '#fecaca', padding: '0.3rem 1rem', borderRadius: '4px' }}>Fermé</span></div>
+      </div>
+
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
           <tr>
-            <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Heure</th>
+            <th>Jour</th>
             {avions.map((avion) => (
-              <th key={avion} style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{avion}</th>
+              <th key={avion}>{avion}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {heures.map((heure) => (
-            <tr key={heure}>
-              <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{heure}</td>
+          {jours.map((jour) => (
+            <tr key={jour}>
+              <td style={{ padding: '0.5rem', fontWeight: 'bold' }}>{jour}</td>
               {avions.map((avion) => {
-                const r = reservations.find(
-                  (res) => res.jour === jour && res.heure === heure && res.avion === avion
-                );
+                const r = data[jour]?.[avion] || null;
+                const estFerme = joursFermes.includes(jour);
+                const couleur = estFerme
+                  ? '#fecaca'
+                  : r
+                  ? '#e5e7eb'
+                  : '#d1fae5';
+
                 return (
                   <td
                     key={avion}
-                    style={{ border: '1px solid #ccc', padding: '0.5rem', backgroundColor: r ? '#ffdddd' : '#e7f7ff' }}
+                    style={{
+                      border: '1px solid #ccc',
+                      padding: '0.5rem',
+                      backgroundColor: couleur,
+                      textAlign: 'center',
+                    }}
                   >
-                    {r ? (
+                    {admin ? (
                       <>
-                        {r.nom}
-                        {admin && (
-                          <button
-                            onClick={() => supprimerReservation(r)}
-                            style={{ marginLeft: '0.5rem', backgroundColor: 'red', color: 'white' }}
-                          >🗑️</button>
+                        {r?.nom || 'Libre'}
+                        {r && (
+                          <div>
+                            <button
+                              onClick={() => supprimerReservation(jour, avion)}
+                              style={{
+                                marginTop: '0.5rem',
+                                fontSize: '0.8rem',
+                                background: 'red',
+                                color: 'white',
+                                border: 'none',
+                                padding: '0.3rem 0.5rem',
+                                borderRadius: '4px',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              Supprimer
+                            </button>
+                          </div>
                         )}
                       </>
                     ) : (
-                      admin && (
-                        <button onClick={() => ajouterReservation(avion, heure)}>➕</button>
-                      )
+                      estFerme ? 'Fermé' : r ? 'Occupé' : 'Libre'
                     )}
                   </td>
                 );
@@ -101,6 +138,6 @@ export default function Calendrier() {
           ))}
         </tbody>
       </table>
-    </main>
+    </div>
   );
 }
