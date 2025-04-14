@@ -19,6 +19,14 @@ export default function Home() {
         <h1>Bienvenue sur Skywings</h1>
         <p>Ce site vous permet de réserver vos créneaux de vol et de consulter les disponibilités de nos avions.</p>
         <p>Naviguez dans le menu pour découvrir nos services.</p>
+
+        {/* 🎯 Cible du bouton "En savoir plus" */}
+        <section id="a-propos" style={{ marginTop: "4rem" }}>
+          <h2>À propos de Skywings</h2>
+          <p>
+            Skywings est un projet personnel dédiée au plaisir de voler. J'encourageons la découverte de l'aviation légère à travers des vols en aéroclub, accessibles à tous et sans but lucratif.
+          </p>
+        </section>
       </main>
     </>
   );
