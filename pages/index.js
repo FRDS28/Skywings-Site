@@ -31,10 +31,10 @@ export default function Home() {
             Notre structure est sans but lucratif : l’objectif est de partager la magie du vol et de démocratiser l’accès à l’aviation.
           </p>
 
-          {/* 📍 Carte de l’aérodrome de Lognes */}
+          {/* 📍 Carte de l’aérodrome de Lognes avec marqueur pour l'Aéroclub Les Aiglons */}
           <div style={{ marginTop: "2rem", display: "flex", justifyContent: "center" }}>
             <iframe
-              title="Carte Aérodrome de Lognes"
+              title="Carte Aérodrome de Lognes - Aéroclub Les Aiglons"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.2623295740843!2d2.623333!3d48.821111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5fc4118023b03%3A0x7509b9d6a8de29d6!2sA%C3%A9rodrome%20de%20Lognes-%C3%89merainville!5e0!3m2!1sfr!2sfr!4v1713090000000!5m2!1sfr!2sfr"
               width="100%"
               height="400"
