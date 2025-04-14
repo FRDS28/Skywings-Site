@@ -11,7 +11,7 @@ export default function Home() {
 
       <section
         className="relative w-full h-screen bg-cover bg-center flex items-center justify-center text-white text-center px-4"
-        style={{ backgroundImage: "url('/images/lognes.jpg')" }}
+        style={{ backgroundImage: "url('/lognes.jpg')" }}
       >
         {/* Overlay sombre */}
         <div className="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
