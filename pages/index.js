@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
         <meta name="author" content="Skywings" />
       </Head>
 
+      <Navbar />
       <HeroSection />
 
       <main>
