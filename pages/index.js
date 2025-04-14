@@ -24,7 +24,7 @@ export default function Home() {
         <section id="a-propos" style={{ marginTop: "4rem" }}>
           <h2>À propos de Skywings</h2>
           <p>
-            Skywings est un projet personnel dédiée au plaisir de voler. J'encourageons la découverte de l'aviation légère à travers des vols en aéroclub, accessibles à tous et sans but lucratif.
+            Skywings est un projet personnel dédiée au plaisir de voler. J'encourage la découverte de l'aviation légère à travers des vols en aéroclub, accessibles à tous et sans but lucratif.
           </p>
         </section>
       </main>
