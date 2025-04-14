@@ -1,11 +1,14 @@
 .hero {
   position: relative;
   height: 100vh;
-  background: red; /* TEMPORAIRE pour vérifier si le CSS est appliqué */
+  background-image: url('/dr400-120.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  color: white;
 }
 
 .overlay {
