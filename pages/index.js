@@ -9,23 +9,17 @@ export default function Home() {
         <title>SkyWings - Voler en toute liberté</title>
       </Head>
 
-      <section className="relative w-full h-screen overflow-hidden">
-        {/* Vidéo de fond */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute w-full h-full object-cover"
-          poster="/images/fallback.jpg" // optionnel si tu veux une image de secours
-        >
-          <source src="/videos/skywings-bg.mp4" type="video/mp4" />
-        </video>
+      <section
+        className="relative w-full h-screen bg-cover bg-center flex items-center justify-center text-white text-center px-4"
+        style={{ backgroundImage: "url('/images/lognes.jpg')" }}
+      >
+        {/* Overlay sombre */}
+        <div className="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
 
-        {/* Overlay + contenu */}
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center text-white px-4">
+        {/* Contenu */}
+        <div className="relative z-10 max-w-3xl">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">Voler en toute liberté</h1>
-          <p className="text-lg md:text-xl max-w-2xl mb-8">
+          <p className="text-lg md:text-xl mb-8">
             Découvrez une nouvelle façon de prendre les airs : simple, élégante et accessible. SkyWings vous invite à voyager autrement, dans le confort et la sérénité.
           </p>
           <div className="flex gap-4 flex-wrap justify-center">
