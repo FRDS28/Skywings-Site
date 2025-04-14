@@ -48,11 +48,10 @@ export default function Calendrier() {
   };
 
   const getCouleur = (jour, heure) => {
-    if (joursFermes.includes(jour)) return '#fecaca'; // rouge clair
+    if (joursFermes.includes(jour)) return '#fecaca';
     const r = reservations[jour]?.[heure];
-    return r ? '#e5e7eb' : '#d1fae5'; // gris si occupé, vert si libre
+    return r ? '#e5e7eb' : '#d1fae5';
   };
-
   return (
     <div style={{ padding: '2rem' }}>
       <h1>Calendrier des vols</h1>
