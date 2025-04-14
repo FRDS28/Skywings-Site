@@ -3,6 +3,7 @@
   height: 100vh;
   background-image: url('/dr400-120.jpg');
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
   display: flex;
   align-items: center;
@@ -11,17 +12,22 @@
 }
 
 .overlay {
-  background: rgba(0, 0, 0, 0.5);
-  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .content {
+  position: relative;
   text-align: center;
   padding: 2rem;
+  z-index: 2;
 }
 
 h1 {
@@ -33,6 +39,7 @@ h1 {
 p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
+  color: white;
 }
 
 .cta {
@@ -40,6 +47,7 @@ p {
   background-color: var(--color-primary);
   color: white;
   padding: 0.75rem 1.5rem;
+  margin: 0 0.5rem;
   border-radius: 8px;
   font-weight: bold;
   transition: background 0.3s ease;
