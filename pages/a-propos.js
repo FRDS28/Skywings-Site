@@ -19,8 +19,8 @@ export default function APropos() {
         <section className={styles.content}>
           <div className={styles.text}>
             <p>
-              Skywings est une initiative associative fondée par des passionnés d'aviation, avec pour mission de rendre le vol accessible à tous.
-              Basée à l'aérodrome de Lognes, notre structure évolue dans un cadre aéroclub, sans but lucratif.
+              Skywings est une initiative associative fondée par un passionnés d'aviation, avec pour mission de rendre le vol accessible à tous.
+              Basée à l'aérodrome de Lognes, la structure évolue dans un cadre aéroclub, sans but lucratif.
             </p>
             <p>
               Que vous soyez curieux de découvrir le pilotage ou que vous ayez déjà une licence, Skywings vous accompagne dans un esprit de partage,
