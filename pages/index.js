@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 
 export default function Home() {
@@ -12,7 +11,6 @@ export default function Home() {
         <meta name="author" content="Skywings" />
       </Head>
 
-      <Navbar />
       <HeroSection />
 
       <main>
@@ -31,7 +29,7 @@ export default function Home() {
             Notre structure est sans but lucratif : l’objectif est de partager la magie du vol et de démocratiser l’accès à l’aviation.
           </p>
 
-          {/* 📍 Carte de l’aérodrome de Lognes avec marqueur pour l'Aéroclub Les Aiglons */}
+          {/* 📍 Carte de l’aérodrome de Lognes avec Aéroclub Les Aiglons */}
           <div style={{ marginTop: "2rem", display: "flex", justifyContent: "center" }}>
             <iframe
               title="Carte Aérodrome de Lognes - Aéroclub Les Aiglons"
