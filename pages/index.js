@@ -1,46 +1,47 @@
-import Head from "next/head";
+import React from 'react';
+import Link from 'next/link';
+import Head from 'next/head';
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>SkyWings ✈️ Vols de loisir depuis Lognes</title>
+        <title>SkyWings - Voler en toute liberté</title>
       </Head>
-      <main>
-        <div style={{ textAlign: 'center' }}>
-          <img src="/logo.png" alt="SkyWings logo" style={{ maxWidth: '150px', marginBottom: '1rem' }} />
-          <h1>Bienvenue chez SkyWings</h1>
-          <p style={{ fontSize: '1.1rem', color: '#444' }}>
-            Offrez-vous une expérience aérienne unique au départ de l’aérodrome de Lognes (LFPL)
+
+      <section className="relative w-full h-screen overflow-hidden">
+        {/* Vidéo de fond */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute w-full h-full object-cover"
+          poster="/images/fallback.jpg" // optionnel si tu veux une image de secours
+        >
+          <source src="/videos/skywings-bg.mp4" type="video/mp4" />
+        </video>
+
+        {/* Overlay + contenu */}
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center text-white px-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Voler en toute liberté</h1>
+          <p className="text-lg md:text-xl max-w-2xl mb-8">
+            Découvrez une nouvelle façon de prendre les airs : simple, élégante et accessible. SkyWings vous invite à voyager autrement, dans le confort et la sérénité.
           </p>
-          <p style={{ fontStyle: 'italic', color: '#666', marginTop: '1rem' }}>
-            « À vos rêves, prêts, décollez ! »
-          </p>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Link href="/vols">
+              <button className="bg-white text-black font-semibold hover:bg-gray-200">
+                Découvrir notre flotte
+              </button>
+            </Link>
+            <Link href="/reserver">
+              <button className="bg-transparent border border-white hover:bg-white hover:text-black">
+                Réserver
+              </button>
+            </Link>
+          </div>
         </div>
-
-        <nav>
-          <a href="/a-propos">À propos</a>
-          <a href="/vols">Vols</a>
-          <a href="/reserver">Réserver</a>
-          <a href="/calendrier">Calendrier</a>
-          <a href="/avis">Avis</a>
-          <a href="/contact">Contact</a>
-        </nav>
-
-        <section style={{ marginTop: '3rem', textAlign: 'center' }}>
-          <div className="card">
-            <h2>🛫 Vols loisirs & Baptêmes de l'air</h2>
-            <p>Découvrez nos formules exclusives à bord du DR400 ou PA28.</p>
-            <a href="/vols"><button>Voir les formules</button></a>
-          </div>
-
-          <div className="card" style={{ marginTop: '2rem' }}>
-            <h2>📅 Réservez en ligne</h2>
-            <p>Choisissez votre créneau et recevez une vidéo GoPro du vol offerte.</p>
-            <a href="/reserver"><button>Réserver maintenant</button></a>
-          </div>
-        </section>
-      </main>
+      </section>
     </>
   );
 }
